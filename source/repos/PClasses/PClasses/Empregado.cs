@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PClasses
+{
+    abstract class Empregado
+    {
+
+        private int matricula; //atributo
+        private String nomeEmpregado;
+        private DateTime dataEntradaEmpresa;
+        private Char homeOffice;
+
+        public Empregado()
+        {
+            System.Windows.Forms.MessageBox.Show("Passei por aqui");
+        }
+        public Empregado(int mat,string nome, DateTime datax)
+        {
+            Matricula = mat;
+            NomeEmpregado = nome;
+            dataEntradaEmpresa = datax;
+
+        }
+
+        public int Matricula //propriedade
+        {
+            get { return matricula; }
+            set { matricula = value; }
+        }
+
+        public String NomeEmpregado
+        {
+            get { return nomeEmpregado; }
+            set { nomeEmpregado = value; }
+        }
+        public DateTime DataEntradaEmpresa
+        {
+            get { return dataEntradaEmpresa; }
+            set { dataEntradaEmpresa = value; }
+        }
+        public char HomeOffice
+        {
+            get { return homeOffice; }
+            set { homeOffice = value; }
+        }
+
+        //métodos
+        public String VerificaHome()
+        {
+            if (homeOffice == 'S')
+                return "Empregado trabalha em home office";
+            else
+                return "Empregado NÃO trabalha em home office";
+        }
+        //virtual --> poder ser subscrito
+        public virtual int TempoTrabalho()
+        {
+            //representa um intervalo de tempo
+            TimeSpan span = DateTime.Today.Subtract
+                (DataEntradaEmpresa);
+
+            return (span.Days);
+        }
+        public abstract double SalarioBruto();
+    }
+}
